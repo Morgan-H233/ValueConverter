@@ -15,3 +15,7 @@ form {
 label, input {
   display: block;
 }
+
+input {
+  font-size: 1em;
+}

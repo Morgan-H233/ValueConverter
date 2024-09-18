@@ -3,10 +3,11 @@ import { convert } from "../utils"
 
 const Form = () => {
     const [input, setInput] = useState(0)
+    const [word, setWord] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        convert(input)
+        setWord(convert(input))
     }
 
     const handleChange = (e) => {
@@ -14,11 +15,23 @@ const Form = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="input">Please type your number</label>
-            <input id="input" type="number" value={input} onChange={handleChange} />
-            <button type="submit">Convert</button>
-        </form>
+        <>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="input">Please type your number</label>
+                <input 
+                    id="input" 
+                    type="number" 
+                    value={input} 
+                    onChange={handleChange} 
+                    step={0.01} 
+                    min={0} 
+                    max={2147483647} 
+                />
+                <button type="submit">Convert</button>
+            </form>
+            <p>Word Presentation for your Number is: </p>
+            <p>{word}</p>
+        </>
     )
 }
 
