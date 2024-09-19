@@ -1,37 +1,65 @@
 const numberWordMap = {
-    '1': 'ONE',
-    '2': 'TWO',
-    '3': 'THREE',
-    '4': 'FOUR',
-    '5': 'FIVE',
-    '6': 'SIX',
-    '7': 'SEVEN',
-    '8': 'EIGHT',
-    '9': 'NINE',
-    '10': 'TEN',
-    '11': 'ELEVEN',
-    '12': 'TWELVE',
-    '13': 'THIRTEEN',
-    '14': 'FOURTEEN',
-    '15': 'FIFTEEN',
-    '16': 'SIXTEEN',
-    '17': 'SEVENTEEN',
-    '18': 'EIGHTEEN',
-    '19': 'NINETEEN',
-    '20': 'TWENTY',
-    '30': 'THIRTY',
-    '40': 'FOURTY',
-    '50': 'FIFTY',
-    '60': 'SISTY',
-    '70': 'SEVENTY',
-    '80': 'EIGHTY',
-    '90': 'NINETY',
+    0: '',
+    1: 'ONE',
+    2: 'TWO',
+    3: 'THREE',
+    4: 'FOUR',
+    5: 'FIVE',
+    6: 'SIX',
+    7: 'SEVEN',
+    8: 'EIGHT',
+    9: 'NINE',
+    10: 'TEN',
+    11: 'ELEVEN',
+    12: 'TWELVE',
+    13: 'THIRTEEN',
+    14: 'FOURTEEN',
+    15: 'FIFTEEN',
+    16: 'SIXTEEN',
+    17: 'SEVENTEEN',
+    18: 'EIGHTEEN',
+    19: 'NINETEEN',
+    20: 'TWENTY',
+    30: 'THIRTY',
+    40: 'FOURTY',
+    50: 'FIFTY',
+    60: 'SISTY',
+    70: 'SEVENTY',
+    80: 'EIGHTY',
+    90: 'NINETY',
 }
 
 const unitWordMap = {
+    0: '',
     1: 'THOUSAND',
     2: 'MILLION',
     3: 'BILLION'
+}
+
+// for value less than a thousand
+const hundredsToWords = (hundreds) => {
+    if(hundreds === 0) return ''
+    const quotient = Math.floor(hundreds / 100)
+    const remainder = hundreds % 100
+    let words = ''
+    if(quotient > 0){
+        words = numberWordMap[quotient] + ' HUNDRED '
+        if(remainder !== 0){
+            words = words + 'AND '
+        }
+    }
+
+    if(remainder > 20){
+        if(remainder % 10 === 0){
+            words = words + numberWordMap[remainder]
+        } else {
+            words = words + numberWordMap[Math.floor((remainder / 10))*10] + '-' + numberWordMap[remainder % 10]
+        }
+    } else {
+        words = words + numberWordMap[remainder]
+    }
+
+    return words
 }
 
 // convert digits of length between 0 to 3 to words
@@ -91,6 +119,11 @@ const digitsToWord = (digits) => {
 
 export const convert = (input) => {
     let word = ''
+
+    // Javascript store input as string, convert to number type first
+   
+
+
     // JavaScript store user input as string, use string directly, separate cents and dollars first
     const dotPosition = input.indexOf('.')
     let dollars = '', cents = '' 
@@ -142,6 +175,45 @@ export const convert = (input) => {
             word += ' AND '
         }
         word = word + digitsToWord(cents) + ' CENTS'
+    }
+
+    return word
+}
+
+export const conver2 = (input) => {
+    let word = ''
+    let inputInNumber = Number(input) * 100
+    let dollars = Math.floor(inputInNumber / 100)
+    let cents = inputInNumber % 100
+
+    let numerOfUnits = 0
+
+    if(cents > 0){
+        word = hundredsToWords(cents) + ' CENTS'
+        if(dollars > 0){
+            word = 'AND ' + word
+        }
+    }
+
+    if(dollars > 0){
+        word = ' DOLLARS ' + word
+    }
+
+    while(dollars > 0){
+        const remainder = dollars % 1000
+        const remainderToWords = hundredsToWords(remainder)
+        if(numerOfUnits === 0){
+            word = remainderToWords + word
+        } else {
+            if(remainderToWords !== ''){
+                word = remainderToWords + ' ' + unitWordMap[numerOfUnits] + ' ' + word
+            }
+        }
+        
+        if(dollars >= 1000){
+            numerOfUnits++
+        }
+        dollars = Math.floor(dollars / 1000)
     }
 
     return word

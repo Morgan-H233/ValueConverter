@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { convert } from "../utils"
+import { convert, conver2 } from "../utils"
 
 const Form = () => {
     const [input, setInput] = useState(0)
@@ -7,7 +7,7 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setWord(convert(input))
+        setWord(conver2(input))
     }
 
     const handleChange = (e) => {
