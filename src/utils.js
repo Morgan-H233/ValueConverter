@@ -43,9 +43,9 @@ const hundredsToWords = (hundreds) => {
     const remainder = hundreds % 100
     let words = ''
     if(quotient > 0){
-        words = numberWordMap[quotient] + ' HUNDRED '
+        words = numberWordMap[quotient] + ' HUNDRED'
         if(remainder !== 0){
-            words = words + 'AND '
+            words = words + ' AND '
         }
     }
 
@@ -191,12 +191,12 @@ export const conver2 = (input) => {
     if(cents > 0){
         word = hundredsToWords(cents) + ' CENTS'
         if(dollars > 0){
-            word = 'AND ' + word
+            word = ' AND ' + word
         }
     }
 
     if(dollars > 0){
-        word = ' DOLLARS ' + word
+        word = ' DOLLARS' + word
     }
 
     while(dollars > 0){
@@ -206,7 +206,10 @@ export const conver2 = (input) => {
             word = remainderToWords + word
         } else {
             if(remainderToWords !== ''){
-                word = remainderToWords + ' ' + unitWordMap[numerOfUnits] + ' ' + word
+                if(word[0] !== ' '){
+                    word = ' ' + word
+                }
+                word = remainderToWords + ' ' + unitWordMap[numerOfUnits] + word
             }
         }
         
