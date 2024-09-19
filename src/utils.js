@@ -68,7 +68,7 @@ const hundredsToWords = (hundreds) => {
 // covert user input into number type
 // so we can run a loop to divide the number by 1000
 // to determin the unit to add into the words 
-export const convertor = (input) => {
+export const converter = (input) => {
     let word = ''
     let inputInNumber = Number(input) * 100 // to get cents part as number value later
     let dollars = Math.floor(inputInNumber / 100)

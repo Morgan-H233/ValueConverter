@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { convertor } from "./utils";
+import { converter } from "./utils";
 
 /*
  Test the convert function only
@@ -15,73 +15,73 @@ import { convertor } from "./utils";
 
 
 test('Amount 1', () => {
-    expect(convertor('1')).toBe('ONE DOLLARS')
+    expect(converter('1')).toBe('ONE DOLLARS')
 })
 
 test('Amount 23', () => {
-    expect(convertor('23')).toBe('TWENTY-THREE DOLLARS')
+    expect(converter('23')).toBe('TWENTY-THREE DOLLARS')
 })
 
 test('Amount 0.45', () => {
-    expect(convertor('0.45')).toBe('FORTY-FIVE CENTS')
+    expect(converter('0.45')).toBe('FORTY-FIVE CENTS')
 })
 
 test('Amount 100', () => {
-    expect(convertor('100')).toBe('ONE HUNDRED DOLLARS')
+    expect(converter('100')).toBe('ONE HUNDRED DOLLARS')
 })
 
 test('Amount 1000', () => {
-    expect(convertor('1000')).toBe('ONE THOUSAND DOLLARS')
+    expect(converter('1000')).toBe('ONE THOUSAND DOLLARS')
 })
 
 test('Amount 1000000', () => {
-    expect(convertor('1000000')).toBe('ONE MILLION DOLLARS')
+    expect(converter('1000000')).toBe('ONE MILLION DOLLARS')
 })
 
 test('Amount 1000000000', () => {
-    expect(convertor('1000000000')).toBe('ONE BILLION DOLLARS')
+    expect(converter('1000000000')).toBe('ONE BILLION DOLLARS')
 })
 
 test('Amount 101', () => {
-    expect(convertor('101')).toBe('ONE HUNDRED AND ONE DOLLARS')
+    expect(converter('101')).toBe('ONE HUNDRED AND ONE DOLLARS')
 })
 
 test('Amount 120', () => {
-    expect(convertor('120')).toBe('ONE HUNDRED AND TWENTY DOLLARS')
+    expect(converter('120')).toBe('ONE HUNDRED AND TWENTY DOLLARS')
 })
 
 test('Amount 123.00', () => {
-    expect(convertor('123.00')).toBe('ONE HUNDRED AND TWENTY-THREE DOLLARS')
+    expect(converter('123.00')).toBe('ONE HUNDRED AND TWENTY-THREE DOLLARS')
 })
 
 test('Amount 123.45', () => {
-    expect(convertor('123.45')).toBe('ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS')
+    expect(converter('123.45')).toBe('ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS')
 })
 
 test('Amount 1234.56', () => {
-    expect(convertor('1234.56')).toBe('ONE THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
+    expect(converter('1234.56')).toBe('ONE THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
 })
 
 test('Amount 11234.56', () => {
-    expect(convertor('11234.56')).toBe('ELEVEN THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
+    expect(converter('11234.56')).toBe('ELEVEN THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
 })
 
 test('Amount 111234.56', () => {
-    expect(convertor('111234.56')).toBe('ONE HUNDRED AND ELEVEN THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
+    expect(converter('111234.56')).toBe('ONE HUNDRED AND ELEVEN THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
 })
 
 test('Amount 1111234.56', () => {
-    expect(convertor('1111234.56')).toBe('ONE MILLION ONE HUNDRED AND ELEVEN THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
+    expect(converter('1111234.56')).toBe('ONE MILLION ONE HUNDRED AND ELEVEN THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
 })
 
 test('Amount 11111234.56', () => {
-    expect(convertor('11111234.56')).toBe('ELEVEN MILLION ONE HUNDRED AND ELEVEN THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
+    expect(converter('11111234.56')).toBe('ELEVEN MILLION ONE HUNDRED AND ELEVEN THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
 })
 
 test('Amount 111111234.56', () => {
-    expect(convertor('111111234.56')).toBe('ONE HUNDRED AND ELEVEN MILLION ONE HUNDRED AND ELEVEN THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
+    expect(converter('111111234.56')).toBe('ONE HUNDRED AND ELEVEN MILLION ONE HUNDRED AND ELEVEN THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
 })
 
 test('Amount 1111111234.56', () => {
-    expect(convertor('1111111234.56')).toBe('ONE BILLION ONE HUNDRED AND ELEVEN MILLION ONE HUNDRED AND ELEVEN THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
+    expect(converter('1111111234.56')).toBe('ONE BILLION ONE HUNDRED AND ELEVEN MILLION ONE HUNDRED AND ELEVEN THOUSAND TWO HUNDRED AND THIRTY-FOUR DOLLARS AND FIFTY-SIX CENTS')
 })

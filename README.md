@@ -1,13 +1,22 @@
 # ValueConverter
 
-Thoughts on solutions:
-To present a number as words, we know that only change is the unit such as from thousand to million. The words for a three-digit number are the same no matter what unit it is. Words of numbers between 1 and 20, and a multiplier of 10 are unique words. Words of other numbers are a combination of these unique words. Therefore I think it makes sense to have store a key value pair/map of these unique words, and write a function to combine them for numbers of 3 digits, or say, within a thousand.
+## Run the web app
+```bash
+npm ci
+npm run dev
+```
 
-As JavaScript store a user input as string, I divide the input into k groups of 3-digit strings. Then I pass each string into the function to convert them into words. Depends on the value of current k of the string, I append the unit after the word. I need to check quite a few conditions such as if the first character of a string is '0' to carefully get the correct unique word from the map. Due to the number of conditions I have to put in place, I started to think if any other better way to implement.
+To run the test cases
+```bash
+npm run test
+```
 
-The other solution I have in mind is to convert the user input into a number type, then I would be able to divide the number by 1000 and get its remainder and quotient also in number type. Remainder would be pass into the function to convert while the quotient continues to be divide by 1000 until it reach 0.
+## Thoughts on solutions
 
-I then think of the complexity of the two solutions. The first one is O(n) if we say n is the length of the number. We need to map each digit to its word. For the second one, I initially thought it would be different but it actually is also O(n) as the number of divisions by 1000 is the same as the number of groups of 3-digit strings that we would get from first solution. Therefore, complexity wise they are the same. The only different is that which solution I would be provide a better code that is easier to read and maintainable if needed.
+To present a number as words, the primary change occurs at the unit level, such as moving from thousands to millions, or millions to billions. The words for a number with up to three digits remain the same, regardless of the unit. Numbers between 1 and 20, as well as multiples of 10, have unique words. Other numbers are a combination of these unique words. With this observation, I decided to write a function to convert numbers less than a thousand into words by storing these unique words in a key-value pair/map and combining them as needed.
 
+The final solution I decided to submit involves first converting the user input into a number. This allows me to divide it by 1000 to get both the quotient and remainder as valid numbers. The remainder is passed to the function to handle numbers under 1000, while the quotient continues to be divided by 1000 until it reaches zero. This method simplifies the core function, as I can directly check whether the number is divisible by 100, 10, or can be mapped to a unique word for numbers less than 20.
 
+My initial solution was to divide the input string into groups of three digits without converting it to a number. Each group would then be passed to the function for conversion, with the appropriate unit (e.g., "THOUSAND") appended later based on the group's position. However, this approach required handling many conditions, such as checking if a digit is '0' and its index within the 3-digit string, which made the implementation more complex and harder to read.
 
+Both solutions have the same complexity of O(n), where 'n' is the length of the number, as each solution ultimately processes each digit. The second solution, however, results in cleaner, more maintainable code, which is why I chose to submit it.
