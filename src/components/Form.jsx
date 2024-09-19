@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { convert, conver2 } from "../utils"
+import { convertor } from "../utils"
 
 const Form = () => {
     const [input, setInput] = useState(0)
@@ -7,7 +7,7 @@ const Form = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setWord(conver2(input))
+        setWord(convertor(input))
     }
 
     const handleChange = (e) => {
@@ -17,20 +17,27 @@ const Form = () => {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="input">Please type your number</label>
+                <label htmlFor="input">Please put your number:</label>
                 <input 
                     id="input" 
                     type="number" 
                     value={input} 
                     onChange={handleChange} 
                     step={0.01} 
-                    min={0} 
+                    min={0.01}
+                    // set max value to the be max integer value in java
                     max={2147483647} 
                 />
                 <button type="submit">Convert</button>
             </form>
-            <p>Word Presentation for your Number is: </p>
-            <p>{word}</p>
+            {
+                word !== '' && 
+                <>
+                    <p>Words for your Number is: </p>
+                    <p>{word}</p>
+                </>
+            }
+            
         </>
     )
 }
